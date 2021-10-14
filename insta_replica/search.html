@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Search for users</title>
+</head>
+
+<body style="background-color:powderblue;">
+  <div style="width:450px;margin:0 auto;padding:20px;border: 5px dotted black;" align="center">
+    <h2><em>Enter search details</em></h2>
+    <br>
+      <form action="/searchresults" method="post">
+          <div>
+            <label style="float:left;width:180px;text-align:center;padding-right:10px;">Name</label>
+            <input type="text" name="user_name" value="" style="float:left" />
+          </div>
+          <br><br>
+        <br>
+        <input type="submit" value="Search" name ="button"/>
+      </form>
+
+    <div style="margin-top:20px;margin-bottom:20px">
+      <form method="get" action="/">
+        <input type="submit" value="Cancel" name="button" />
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

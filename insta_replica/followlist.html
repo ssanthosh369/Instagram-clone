@@ -1,0 +1,21 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Follow List</title>
+</head>
+
+<body style="background-color:powderblue;">
+  <h3 align="center"><a href='/profilepage?key={{key}}'>Back to Profile page</a></h3>
+  <div style="width:600px;margin:0 auto;padding:20px;border: 5px dotted black;" align="center">
+    <h1>{{url}} </h1>
+    <br />
+    {%for i in list %}
+      <a href="/profilepage?key={{i.urlsafe()}}">{{i.get().email}}</a>
+      <br>
+    {% endfor %}
+    <br>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Create new Task Board</title>
+</head>
+
+<body style="background-color:powderblue;">
+  <div style="width:450px;margin:0 auto;padding:20px;border: 5px dotted black;" align="center">
+    <h2><em>Enter the details of the comment</em></h2>
+    <br>
+    <p>Index: {{index}}</p>
+    <p>Caption: {{i.posts[index].get().caption}}</p>
+      <form action="/addcommentconfirm" method="post">
+          <div>
+            <label for="comment_text"style="float:center;width:180px;text-align:center;padding-right:10px;">Comment:</label>
+            <textarea name= "comment_text" id="comment_text" rows="4" cols="50" required maxlength="200"></textarea>
+          </div>
+          <br>
+          <input type="hidden" value="{{ key }}" name="key" />
+          <input type="hidden" value="{{ index }}" name="index" />
+        <input type="submit" value="Add" name="button"/>
+      </form>
+
+    <div style="margin-top:20px;margin-bottom:20px">
+      <form method="get" action="/profilepage?key={{key}}">
+        <input type="hidden" value="{{ key }}" name="key" />
+        <input type="submit" value="Cancel" name="button" />
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Profile page</title>
+</head>
+
+<body style="background-color:powderblue;">
+  <h3 align="center"><a href='/'>Back to Main Page</a></h3>
+  <div style="width:600px;margin:0 auto;padding:20px;border: 5px dotted black;" align="center">
+    <h1>User Profile</h1>
+    <h3 style="color:purple"> Profile of  {{ i.email }} </h3>
+    <h2><a href="/followlist?key={{key}}&type=Following">Following: {{ following_num}}</a></h2>
+    <h2><a href="/followlist?key={{key}}&type=Followed">Followed: {{ followed_num }}</a></h2>
+    {% if current_user != i.email %}
+    <div style="display:inline-flex;">
+      <form method="get" action="/profilepage?key={{key}}" style="margin:10px">
+        <input type="hidden" value="{{ key }}" name="key" />
+        <input type="submit" value="Follow/Unfollow" name="button" />
+      </form>
+
+      {% if follower %}
+      <p style="margin:10px;color:green">Following</p>
+      {% else %}
+      <p style="margin:10px;color:red">Not Following</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    <hr>
+    <h2>Posts</h2>
+    {% for k in i.posts|reverse %}
+      <hr>
+      <p>Caption: {{ k.get().caption }}</p>
+      <form method="get" action="/addcomment" style="margin:10px">
+        <input type="hidden" value="{{ key }}" name="key" />
+        <input type="hidden" value="{{ i.posts|length - loop.index }}" name="index" />
+        <input type="submit" value="Add Comment" name="button" />
+      </form>
+      <p><img src='{{ image[loop.index - 1] }}' width='200' height='200'> </p>
+      <hr>
+      {% if k.get().comments|length == 0 %}
+      <h3>No comments</h3>
+      {% else %}
+      <h3>Comments</h3>
+      {% for j in k.get().comments|reverse %}
+        <hr>
+        <p>User: {{j.username}}</p>
+        <p> {{j.comment_text}}</p>
+      {% endfor %}
+      <hr>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</body>
+
+</html>
